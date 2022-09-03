@@ -1,3 +1,8 @@
+:root {
+  --bit-color0: hsl(200 20% 15%);
+  --bit-color1: hsl(200 10% 95%);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -11,6 +16,37 @@ body {
   margin: 0 auto;
 }
 
+pre {
+  font-size: 1rem;
+}
+
+header {
+  border-bottom: var(--bit-border-width) dotted var(--bit-color0);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+header h1,
+header p {
+  margin: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.items-end {
+  align-items: end;
+}
+
+.gap1 {
+  gap: 1rem;
+}
+
 .code-input {
   font-family: monospace;
   font-size: 1rem;
@@ -19,6 +55,10 @@ body {
   scrollbar-color: var(--bit-color1) var(--bit-color0);
 }
 
-pre {
-  font-size: 1rem;
+.code-output {
+  padding: 0 12px;
+}
+
+.code-output pre {
+  margin: 0;
 }

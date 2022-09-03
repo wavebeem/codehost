@@ -167,47 +167,55 @@ export function App(): JSX.Element {
   }
 
   return (
-    <>
-      <label className="bit-label" htmlFor="form-lang">
-        Language
-      </label>
-      <select
-        id="form-lang"
-        className="bit-select"
-        value={lang}
-        onChange={(event) => {
-          setLang(event.target.value);
-        }}
-      >
-        {Object.entries(languages).map(([key, val]) => {
-          return (
-            <option key={key} value={key}>
-              {val}
-            </option>
-          );
-        })}
-      </select>
-      <label className="bit-label" htmlFor="form-code">
-        Code
-      </label>
-      <textarea
-        id="form-code"
-        className="bit-input code-input"
-        rows={10}
-        value={code}
-        onChange={(event) => {
-          setCode(event.target.value);
-        }}
-      />
-      <button className="bit-button" type="button" onClick={loadFromFile}>
-        Load from file
-      </button>
+    <div className="flex flex-column gap1">
+      <div className="flex items-end gap1">
+        <div className="flex flex-column">
+          <label className="bit-label" htmlFor="form-lang">
+            Language
+          </label>
+          <select
+            id="form-lang"
+            className="bit-select"
+            value={lang}
+            onChange={(event) => {
+              setLang(event.target.value);
+            }}
+          >
+            {Object.entries(languages).map(([key, val]) => {
+              return (
+                <option key={key} value={key}>
+                  {val}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <button className="bit-button" type="button" onClick={loadFromFile}>
+          Load text from file
+        </button>
+      </div>
+      <div className="flex flex-column">
+        <label className="bit-label" htmlFor="form-code">
+          Paste text here
+        </label>
+        <textarea
+          id="form-code"
+          className="bit-input code-input"
+          rows={10}
+          value={code}
+          onChange={(event) => {
+            setCode(event.target.value);
+          }}
+        />
+      </div>
       <button className="bit-button" type="button" onClick={copyAsHTML}>
         Copy as HTML
       </button>
-      <pre className="_root" ref={preRef}>
-        <code className={`language-${lang}`}>{code || " "}</code>
-      </pre>
-    </>
+      <div className="code-output">
+        <pre className="_root" ref={preRef}>
+          <code className={`language-${lang}`}>{code || " "}</code>
+        </pre>
+      </div>
+    </div>
   );
 }
