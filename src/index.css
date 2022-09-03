@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+  font-size: 1.1rem;
+  padding: 2rem;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.code-input {
+  font-family: monospace;
+  font-size: 1rem;
+  width: 100%;
+  resize: none;
+  scrollbar-color: var(--bit-color1) var(--bit-color0);
+}
+
+pre {
+  font-size: 1rem;
+}
