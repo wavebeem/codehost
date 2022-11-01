@@ -12,6 +12,7 @@ import "prismjs/components/prism-json";
 import "prismjs/components/prism-perl";
 import "prismjs/components/prism-python";
 import "prismjs/components/prism-ruby";
+import "prismjs/components/prism-rust";
 import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-yaml";
 import { useLayoutEffect, useRef, useState } from "react";
@@ -38,6 +39,7 @@ const languages = {
   python: "Python",
   shell: "Shell",
 
+  rust: "Rust",
   graphql: "GraphQL",
   perl: "Perl",
   haskell: "Haskell",
@@ -141,7 +143,14 @@ export function App(): JSX.Element {
   const [code, setCode] = useState(initialCode);
 
   useLayoutEffect(() => {
-    if (!preRef.current) return;
+    if (!preRef.current) {
+      return;
+    }
+    preRef.current.innerHTML = "";
+    const codeElement = document.createElement("code");
+    codeElement.className = `language-${lang}`;
+    codeElement.textContent = code || " ";
+    preRef.current.appendChild(codeElement);
     prism.highlightAllUnder(preRef.current);
     addInlineStyles(preRef.current);
   });
@@ -191,7 +200,7 @@ export function App(): JSX.Element {
           </select>
         </div>
         <button className="bit-button" type="button" onClick={loadFromFile}>
-          Load text from file
+          Load text from file&hellip;
         </button>
       </div>
       <div className="flex flex-column">
@@ -208,13 +217,13 @@ export function App(): JSX.Element {
           }}
         />
       </div>
-      <button className="bit-button" type="button" onClick={copyAsHTML}>
-        Copy as HTML
-      </button>
+      <div>
+        <button className="bit-button" type="button" onClick={copyAsHTML}>
+          Copy as HTML
+        </button>
+      </div>
       <div className="code-output">
-        <pre className="_root" ref={preRef}>
-          <code className={`language-${lang}`}>{code || " "}</code>
-        </pre>
+        <pre className="_root" ref={preRef} />
       </div>
     </div>
   );
