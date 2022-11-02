@@ -3,18 +3,28 @@ import "prismjs/components/prism-bash";
 import "prismjs/components/prism-c";
 import "prismjs/components/prism-cpp";
 import "prismjs/components/prism-csharp";
+import "prismjs/components/prism-elixir";
 import "prismjs/components/prism-go";
 import "prismjs/components/prism-graphql";
 import "prismjs/components/prism-haskell";
 import "prismjs/components/prism-java";
 import "prismjs/components/prism-js-extras";
 import "prismjs/components/prism-json";
+import "prismjs/components/prism-kotlin";
+import "prismjs/components/prism-lua";
+import "prismjs/components/prism-markup-templating";
 import "prismjs/components/prism-perl";
+import "prismjs/components/prism-php";
 import "prismjs/components/prism-python";
 import "prismjs/components/prism-ruby";
 import "prismjs/components/prism-rust";
+import "prismjs/components/prism-scala";
+import "prismjs/components/prism-sql";
+import "prismjs/components/prism-swift";
+import "prismjs/components/prism-toml";
 import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-yaml";
+import "prismjs/components/prism-zig";
 import { useLayoutEffect, useRef, useState } from "react";
 
 const initialLang = "javascript";
@@ -33,16 +43,30 @@ const languages = {
   svg: "SVG",
   xml: "XML",
   yaml: "YAML",
+  toml: "TOML",
+  sql: "SQL",
+  graphql: "GraphQL",
 
-  java: "Java",
   ruby: "Ruby",
   python: "Python",
+  perl: "Perl",
+  php: "PHP",
+  lua: "Lua",
+  elixir: "Elixir",
   shell: "Shell",
 
+  c: "C",
+  cpp: "C++",
+  csharp: "C#",
+  java: "Java",
+  kotlin: "Kotlin",
+  go: "Go",
+
   rust: "Rust",
-  graphql: "GraphQL",
-  perl: "Perl",
   haskell: "Haskell",
+  scala: "Scala",
+  swift: "Swift",
+  zig: "Zig",
 };
 
 type Theme = Record<string, ThemeObj>;
@@ -126,7 +150,7 @@ function* walk(root: Element): Generator<HTMLElement> {
   }
 }
 
-function addInlineStyles(root: HTMLElement) {
+function inlineStyles(root: HTMLElement) {
   for (const elem of walk(root)) {
     for (const cls of elem.classList) {
       const themeObj = themeBasic[cls] || {};
@@ -134,6 +158,7 @@ function addInlineStyles(root: HTMLElement) {
         elem.style.setProperty(key, val);
       }
     }
+    elem.removeAttribute("class");
   }
 }
 
@@ -152,7 +177,7 @@ export function App(): JSX.Element {
     codeElement.textContent = code || " ";
     preRef.current.appendChild(codeElement);
     prism.highlightAllUnder(preRef.current);
-    addInlineStyles(preRef.current);
+    inlineStyles(preRef.current);
   });
 
   function loadFromFile() {
