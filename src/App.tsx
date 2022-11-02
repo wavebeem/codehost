@@ -126,7 +126,7 @@ function* walk(root: Element): Generator<HTMLElement> {
   }
 }
 
-function addInlineStyles(root: HTMLElement) {
+function inlineStyles(root: HTMLElement) {
   for (const elem of walk(root)) {
     for (const cls of elem.classList) {
       const themeObj = themeBasic[cls] || {};
@@ -134,6 +134,7 @@ function addInlineStyles(root: HTMLElement) {
         elem.style.setProperty(key, val);
       }
     }
+    elem.removeAttribute("class");
   }
 }
 
@@ -152,7 +153,7 @@ export function App(): JSX.Element {
     codeElement.textContent = code || " ";
     preRef.current.appendChild(codeElement);
     prism.highlightAllUnder(preRef.current);
-    addInlineStyles(preRef.current);
+    inlineStyles(preRef.current);
   });
 
   function loadFromFile() {
