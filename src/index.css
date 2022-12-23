@@ -16,7 +16,6 @@ body {
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   line-height: 1.5;
-  font-size: 1.1rem;
   padding: 1rem;
   max-width: 800px;
   margin: 0 auto;
@@ -30,10 +29,10 @@ main {
   margin-top: 2rem;
 }
 
-h1 {
+h1,
+h2 {
   margin: 0;
   margin-top: 1rem;
-  margin-bottom: 0.25rem;
 }
 
 .footer {

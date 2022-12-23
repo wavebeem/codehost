@@ -8,6 +8,7 @@ import "prismjs/components/prism-go";
 import "prismjs/components/prism-graphql";
 import "prismjs/components/prism-haskell";
 import "prismjs/components/prism-java";
+import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-js-extras";
 import "prismjs/components/prism-json";
 import "prismjs/components/prism-kotlin";
@@ -23,9 +24,11 @@ import "prismjs/components/prism-sql";
 import "prismjs/components/prism-swift";
 import "prismjs/components/prism-toml";
 import "prismjs/components/prism-typescript";
+import "prismjs/components/prism-tsx";
 import "prismjs/components/prism-yaml";
 import "prismjs/components/prism-zig";
 import { useLayoutEffect, useRef, useState } from "react";
+import { themeBasic } from "./theme-basic";
 
 const initialLang = "javascript";
 const initialCode = `\
@@ -38,7 +41,9 @@ const languages = {
   html: "HTML",
   css: "CSS",
   javascript: "JavaScript",
+  jsx: "JavaScript (with JSX)",
   typescript: "TypeScript",
+  tsx: "TypeScript (with JSX)",
   json: "JSON",
   svg: "SVG",
   xml: "XML",
@@ -69,76 +74,6 @@ const languages = {
   zig: "Zig",
 };
 
-type Theme = Record<string, ThemeObj>;
-type ThemeObj = Record<string, string>;
-
-const c0 = "hsl(270 80% 90%)";
-const c1 = "hsl(190 20% 70%)";
-const c2 = "hsl(30 80% 70%)";
-const c3 = "hsl(190 95% 80%)";
-const c4 = "hsl(100 70% 70%)";
-
-const colors = {
-  comment: { color: c0 },
-  punctuation: { color: c1 },
-  string: { color: c2 },
-  property: { color: c2 },
-  operator: { color: c2 },
-  function: { color: c3 },
-  keyword: { color: c4 },
-} as const;
-
-const themeBasic: Theme = {
-  _root: {
-    background: "hsl(200 20% 15%)",
-    color: "hsl(200 10% 95%)",
-    padding: "0.5rem",
-    "border-radius": "0",
-    "line-height": "1.5",
-    "scrollbar-color": "hsl(200 10% 75%) hsl(200 20% 35%)",
-    "overflow-x": "auto",
-    "font-size": "14px",
-    "margin-left": "-12px",
-    "margin-right": "-12px",
-  },
-
-  comment: colors.comment,
-  prolog: colors.comment,
-  doctype: colors.comment,
-  cdata: colors.comment,
-
-  punctuation: colors.punctuation,
-
-  selector: colors.string,
-  "attr-name": colors.string,
-  string: colors.string,
-  char: colors.string,
-  builtin: colors.string,
-  inserted: colors.string,
-
-  operator: colors.operator,
-  entity: colors.operator,
-  url: colors.operator,
-  variable: colors.operator,
-
-  atrule: colors.function,
-  "attr-value": colors.function,
-  function: colors.function,
-  "class-name": colors.function,
-
-  keyword: colors.keyword,
-
-  property: colors.property,
-  tag: colors.property,
-  constant: colors.property,
-  symbol: colors.property,
-  deleted: colors.property,
-  boolean: colors.property,
-  number: colors.property,
-  regex: colors.property,
-  important: colors.property,
-};
-
 function* walk(root: Element): Generator<HTMLElement> {
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
   let node: Node | null = walker.currentNode;
@@ -158,7 +93,10 @@ function inlineStyles(root: HTMLElement) {
         elem.style.setProperty(key, val);
       }
     }
-    elem.removeAttribute("class");
+    // Leave the class in local development for easier theme debugging
+    if (location.hostname !== "localhost") {
+      elem.removeAttribute("class");
+    }
   }
 }
 
@@ -260,6 +198,7 @@ export function App(): JSX.Element {
           <div>Include link to codehost</div>
         </label>
       </div>
+      <h2>Preview</h2>
       <output className="code-output">
         <article>
           <header>
