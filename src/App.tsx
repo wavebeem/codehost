@@ -31,9 +31,11 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { themeBasic } from "./theme-basic";
 import { themeOcean } from "./theme-ocean";
 import { Theme } from "./themes";
+import { themeNature } from "./theme-nature";
 
 const initialLang = "tsx";
 const initialCode = `\
+// 3... 2... 1... Blast-off!
 async function countdown(): Promise<void> {
   for (let i = 10; i > 0; i--) {
     console.log(i);
@@ -42,7 +44,10 @@ async function countdown(): Promise<void> {
   console.log("Blast-off!");
 }
 
-async function sleep(delay): Promise<void> {
+/**
+ * \`setTimeout\` for \`delay\` miliseconds
+ */
+async function sleep(delay: number): Promise<void> {
   return new Promise((resolve) => {
     setTimeout(resolve, delay);
   });
@@ -91,11 +96,13 @@ const languages = {
 const themeNames = {
   ocean: "Ocean",
   basic: "Basic",
+  nature: "Nature",
 } as const;
 
 const themes: { readonly [key in keyof typeof themeNames]: Theme } = {
   ocean: themeOcean,
   basic: themeBasic,
+  nature: themeNature,
 };
 
 function* walk(root: Element): Generator<HTMLElement> {
@@ -247,11 +254,10 @@ export function App(): JSX.Element {
           </select>
         </div>
       </div>
-      <h2>Preview</h2>
       <output className="code-output">
         <article>
           <header>
-            <b>Display Name</b> @username
+            <b>Preview</b> @cohost
           </header>
           <hr />
           <main>

@@ -5,6 +5,10 @@ export function colorStyle<S extends string>(color: S) {
   return { color } as const;
 }
 
+export function colorStyleBold<S extends string>(color: S) {
+  return { color, "font-weight": "bold" } as const;
+}
+
 export const themeRootBase: ThemeObj = {
   padding: "0.5rem",
   "border-radius": "0",

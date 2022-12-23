@@ -1,15 +1,14 @@
 import { Theme, colorStyle, themeRootBase, colorStyleBold } from "./themes";
 
-const bg = "hsl(200 20% 15%)";
+const bg = "hsl(160 30% 94%)";
 // Copy/paste from Color Combos
 // https://color-combos.wavebeem.com
-const [fg, purple, gray, orange, blue, green] = `
-hsl(200 10% 80%)
-hsl(270 50% 80%)
-hsl(190 20% 55%)
-hsl(30 100% 70%)
-hsl(190 75% 65%)
-hsl(100 50% 65%)
+const [fg, subtle, uno, due, tre] = `
+hsl(160 75% 20%)
+hsl(160 65% 30%)
+hsl(200 95% 35%)
+hsl(70 85% 25%)
+hsl(310 95% 35%)
 `
   .trim()
   .split("\n")
@@ -18,20 +17,22 @@ hsl(100 50% 65%)
 
 const colors = {
   fg: colorStyle(fg),
-  comment: colorStyle(purple),
-  punctuation: colorStyle(gray),
-  string: colorStyle(orange),
-  property: colorStyle(blue),
-  selector: colorStyle(green),
-  operator: colorStyle(gray),
-  function: colorStyle(blue),
-  keyword: colorStyleBold(green),
+  comment: colorStyle(subtle),
+  punctuation: colorStyle(subtle),
+  string: colorStyle(tre),
+  property: colorStyle(due),
+  selector: colorStyle(uno),
+  operator: colorStyle(subtle),
+  function: colorStyle(due),
+  keyword: colorStyleBold(uno),
 } as const;
 
-export const themeBasic: Theme = {
+export const themeNature: Theme = {
   _root: {
     ...themeRootBase,
     "scrollbar-color": `${fg} ${bg}`,
+    "border-top": `1px solid hsl(160 30% 85%)`,
+    "border-bottom": `1px solid hsl(160 30% 85%)`,
     background: bg,
     color: fg,
   },
