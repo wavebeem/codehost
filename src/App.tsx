@@ -105,7 +105,8 @@ const themes: { readonly [key in keyof typeof themeNames]: Theme } = {
   nature: themeNature,
 };
 
-function* walk(root: Element): Generator<HTMLElement> {
+function* walk(root: HTMLElement): Generator<HTMLElement> {
+  yield root;
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
   let node: Node | null = walker.currentNode;
   while (node) {
@@ -125,6 +126,7 @@ export function App(): JSX.Element {
   const [includeLink, setIncludeLink] = useState(true);
 
   function inlineStyles(root: HTMLElement) {
+    root.classList.add("_root");
     for (const elem of walk(root)) {
       for (const cls of elem.classList) {
         const themeObj = themes[theme][cls] || {};
@@ -133,7 +135,9 @@ export function App(): JSX.Element {
         }
       }
       // Leave the class in local development for easier theme debugging
-      if (location.hostname !== "localhost") {
+      if (
+        !(location.hostname === "localhost" && localStorage.debug === "true")
+      ) {
         elem.removeAttribute("class");
       }
     }
