@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "1bit-ui";
+import "2bit-ui";
 import "./index.css";
 import { App } from "./App";
 

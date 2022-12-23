@@ -1,17 +1,23 @@
-:root {
-  --bit-color0: hsl(200 20% 15%);
-  --bit-color1: hsl(200 10% 95%);
-}
-
 * {
   box-sizing: border-box;
 }
 
+:root {
+  --color-notWhite: 255 249 242;
+  --color-notBlack: 25 25 25;
+  --color-cherry: 131 37 79;
+  --color-strawberry: 229 107 111;
+  --color-mango: 255 171 92;
+  --color-longan: 255 216 168;
+}
+
 body {
-  font-family: sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   line-height: 1.5;
   font-size: 1.1rem;
-  padding: 2rem;
+  padding: 1rem;
   max-width: 800px;
   margin: 0 auto;
 }
@@ -20,23 +26,34 @@ pre {
   font-size: 1rem;
 }
 
-header {
-  border-bottom: var(--bit-border-width) dotted var(--bit-color0);
-  padding-bottom: 1rem;
-  margin-bottom: 2rem;
+main {
+  margin-top: 2rem;
 }
 
-header h1,
-header p {
+h1 {
   margin: 0;
+  margin-top: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.footer {
+  margin-top: 1rem;
 }
 
 .flex {
   display: flex;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .flex-column {
   flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
 }
 
 .items-end {
@@ -44,21 +61,68 @@ header p {
 }
 
 .gap1 {
+  gap: 0.25rem;
+}
+
+.gap2 {
+  gap: 0.5rem;
+}
+
+.gap3 {
   gap: 1rem;
 }
 
 .code-input {
-  font-family: monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
   font-size: 1rem;
   width: 100%;
   resize: none;
-  scrollbar-color: var(--bit-color1) var(--bit-color0);
+  scrollbar-color: var(--bit-color-bg) var(--bit-color-fg);
 }
 
 .code-output {
-  padding: 0 12px;
+  box-shadow: 0 0 0 1px rgb(20 20 20 / 10%), 0 2px 4px rgb(20 20 20 / 20%);
+  border-radius: 4px;
+  color: rgb(var(--color-notBlack));
+  background: rgb(var(--color-notWhite));
+  font-size: 1rem;
+}
+
+.code-output main {
+  background: white;
+  padding: 12px;
+  margin: 0;
+}
+
+.code-output hr {
+  margin: 0 1rem;
+  border: 0;
+  border-top: 1px solid rgb(var(--color-notBlack) / 25%);
+}
+
+.code-output aside {
+  color: rgb(var(--color-notBlack) / 50%);
+}
+
+.code-output .prose {
+  margin: 1rem 0;
+}
+
+.code-output h1 {
+  margin: 0;
+}
+
+.code-output footer,
+.code-output header {
+  padding: 1rem;
 }
 
 .code-output pre {
   margin: 0;
+  margin-bottom: 1.5rem;
+}
+
+.prose a {
+  color: inherit;
 }

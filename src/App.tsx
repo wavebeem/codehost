@@ -164,8 +164,10 @@ function inlineStyles(root: HTMLElement) {
 
 export function App(): JSX.Element {
   const preRef = useRef<HTMLPreElement>(null);
+  const proseRef = useRef<HTMLDivElement>(null);
   const [lang, setLang] = useState(initialLang);
   const [code, setCode] = useState(initialCode);
+  const [includeLink, setIncludeLink] = useState(true);
 
   useLayoutEffect(() => {
     if (!preRef.current) {
@@ -193,17 +195,17 @@ export function App(): JSX.Element {
   }
 
   function copyAsHTML() {
-    if (!preRef.current) {
+    if (!proseRef.current) {
       alert("Failed to copy to clipboard");
       return;
     }
-    navigator.clipboard.writeText(preRef.current.outerHTML);
+    navigator.clipboard.writeText(proseRef.current.innerHTML);
   }
 
   return (
-    <div className="flex flex-column gap1">
-      <div className="flex items-end gap1">
-        <div className="flex flex-column">
+    <main className="flex flex-column gap3">
+      <div className="flex flex-wrap items-end gap3">
+        <div className="flex flex-column gap1">
           <label className="bit-label" htmlFor="form-lang">
             Language
           </label>
@@ -228,7 +230,7 @@ export function App(): JSX.Element {
           Load text from file&hellip;
         </button>
       </div>
-      <div className="flex flex-column">
+      <div className="flex flex flex-column gap1">
         <label className="bit-label" htmlFor="form-code">
           Paste text here
         </label>
@@ -242,14 +244,47 @@ export function App(): JSX.Element {
           }}
         />
       </div>
-      <div>
+      <div className="flex flex-wrap gap3 items-center">
         <button className="bit-button" type="button" onClick={copyAsHTML}>
           Copy as HTML
         </button>
+        <label className="bit-field">
+          <input
+            className="bit-checkbox"
+            type="checkbox"
+            checked={includeLink}
+            onChange={(event) => {
+              setIncludeLink(event.target.checked);
+            }}
+          />
+          <div>Include link to codehost</div>
+        </label>
       </div>
-      <div className="code-output">
-        <pre className="_root" ref={preRef} />
-      </div>
-    </div>
+      <output className="code-output">
+        <article>
+          <header>
+            <b>Display Name</b> @username
+          </header>
+          <hr />
+          <main>
+            <h1>Your post title</h1>
+            <div className="prose" ref={proseRef}>
+              <pre className="_root" ref={preRef} />
+              {includeLink && (
+                <div style={{ marginTop: "-1rem", fontSize: "smaller" }}>
+                  syntax highlighting by{" "}
+                  <a href="https://codehost.wavebeem.com">codehost</a>
+                </div>
+              )}
+            </div>
+            <aside>
+              <small>#codehost</small>
+            </aside>
+          </main>
+          <hr />
+          <footer>0 comments</footer>
+        </article>
+      </output>
+    </main>
   );
 }
