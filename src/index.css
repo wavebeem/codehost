@@ -39,6 +39,10 @@ h2 {
   margin-top: 1rem;
 }
 
+.flex-auto {
+  flex: auto;
+}
+
 .flex {
   display: flex;
 }
@@ -49,6 +53,10 @@ h2 {
 
 .flex-column {
   flex-direction: column;
+}
+
+.items-start {
+  align-items: start;
 }
 
 .items-center {

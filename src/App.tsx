@@ -29,12 +29,26 @@ import "prismjs/components/prism-yaml";
 import "prismjs/components/prism-zig";
 import { useLayoutEffect, useRef, useState } from "react";
 import { themeBasic } from "./theme-basic";
+import { themeOcean } from "./theme-ocean";
+import { Theme } from "./themes";
 
-const initialLang = "javascript";
+const initialLang = "tsx";
 const initialCode = `\
-const example = "hello world";
+async function countdown(): Promise<void> {
+  for (let i = 10; i > 0; i--) {
+    console.log(i);
+    await sleep(1000);
+  }
+  console.log("Blast-off!");
+}
 
-console.log(example);
+async function sleep(delay): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, delay);
+  });
+}
+
+countdown();
 `;
 
 const languages = {
@@ -72,6 +86,16 @@ const languages = {
   scala: "Scala",
   swift: "Swift",
   zig: "Zig",
+} as const;
+
+const themeNames = {
+  ocean: "Ocean",
+  basic: "Basic",
+} as const;
+
+const themes: { readonly [key in keyof typeof themeNames]: Theme } = {
+  ocean: themeOcean,
+  basic: themeBasic,
 };
 
 function* walk(root: Element): Generator<HTMLElement> {
@@ -85,27 +109,28 @@ function* walk(root: Element): Generator<HTMLElement> {
   }
 }
 
-function inlineStyles(root: HTMLElement) {
-  for (const elem of walk(root)) {
-    for (const cls of elem.classList) {
-      const themeObj = themeBasic[cls] || {};
-      for (const [key, val] of Object.entries(themeObj)) {
-        elem.style.setProperty(key, val);
-      }
-    }
-    // Leave the class in local development for easier theme debugging
-    if (location.hostname !== "localhost") {
-      elem.removeAttribute("class");
-    }
-  }
-}
-
 export function App(): JSX.Element {
   const preRef = useRef<HTMLPreElement>(null);
   const proseRef = useRef<HTMLDivElement>(null);
   const [lang, setLang] = useState(initialLang);
   const [code, setCode] = useState(initialCode);
+  const [theme, setTheme] = useState<keyof typeof themeNames>("ocean");
   const [includeLink, setIncludeLink] = useState(true);
+
+  function inlineStyles(root: HTMLElement) {
+    for (const elem of walk(root)) {
+      for (const cls of elem.classList) {
+        const themeObj = themes[theme][cls] || {};
+        for (const [key, val] of Object.entries(themeObj)) {
+          elem.style.setProperty(key, val);
+        }
+      }
+      // Leave the class in local development for easier theme debugging
+      if (location.hostname !== "localhost") {
+        elem.removeAttribute("class");
+      }
+    }
+  }
 
   useLayoutEffect(() => {
     if (!preRef.current) {
@@ -182,21 +207,45 @@ export function App(): JSX.Element {
           }}
         />
       </div>
-      <div className="flex flex-wrap gap3 items-center">
-        <button className="bit-button" type="button" onClick={copyAsHTML}>
-          Copy as HTML
-        </button>
-        <label className="bit-field">
-          <input
-            className="bit-checkbox"
-            type="checkbox"
-            checked={includeLink}
+      <div className="flex flex-wrap gap3 items-end">
+        <div className="flex flex-column gap3 items-start">
+          <label className="bit-field flex flex-wrap gap1 items-center">
+            <input
+              className="bit-checkbox"
+              type="checkbox"
+              checked={includeLink}
+              onChange={(event) => {
+                setIncludeLink(event.target.checked);
+              }}
+            />
+            <div>Include link to codehost</div>
+          </label>
+          <button className="bit-button" type="button" onClick={copyAsHTML}>
+            Copy as HTML
+          </button>
+        </div>
+        <div className="flex-auto"></div>
+        <div className="flex flex-auto flex-column gap1">
+          <label className="bit-label" htmlFor="form-theme">
+            Theme
+          </label>
+          <select
+            id="form-theme"
+            className="bit-select"
+            value={theme}
             onChange={(event) => {
-              setIncludeLink(event.target.checked);
+              setTheme(event.target.value as any);
             }}
-          />
-          <div>Include link to codehost</div>
-        </label>
+          >
+            {Object.entries(themeNames).map(([key, val]) => {
+              return (
+                <option key={key} value={key}>
+                  {val}
+                </option>
+              );
+            })}
+          </select>
+        </div>
       </div>
       <h2>Preview</h2>
       <output className="code-output">
