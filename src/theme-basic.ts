@@ -17,6 +17,7 @@ hsl(100 50% 65%)
   .filter((s) => s);
 
 const colors = {
+  fg: colorStyle(fg),
   comment: colorStyle(purple),
   punctuation: colorStyle(gray),
   string: colorStyle(orange),
@@ -35,6 +36,8 @@ export const themeBasic: Theme = {
     color: fg,
   },
 
+  script: colors.fg,
+
   comment: colors.comment,
   prolog: colors.comment,
   doctype: colors.comment,
@@ -42,7 +45,7 @@ export const themeBasic: Theme = {
 
   punctuation: colors.punctuation,
 
-  "attr-name": colors.string,
+  "attr-value": colors.string,
   string: colors.string,
   char: colors.string,
   builtin: colors.string,
@@ -51,19 +54,18 @@ export const themeBasic: Theme = {
   operator: colors.operator,
   entity: colors.operator,
   url: colors.operator,
-  // variable: colors.operator,
 
   atrule: colors.function,
-  "attr-value": colors.function,
+  "attr-name": colors.function,
   function: colors.function,
   "class-name": colors.function,
 
+  tag: colors.keyword,
   selector: colors.keyword,
   keyword: colors.keyword,
   rule: colors.keyword,
 
   property: colors.property,
-  tag: colors.property,
   constant: colors.property,
   symbol: colors.property,
   deleted: colors.property,
