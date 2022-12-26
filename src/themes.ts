@@ -17,4 +17,5 @@ export const themeRootBase: ThemeObj = {
   "font-size": "14px",
   "margin-left": "-12px",
   "margin-right": "-12px",
+  border: "0",
 };
