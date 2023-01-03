@@ -1,19 +1,21 @@
-import { Theme, colorStyle, themeRootBase, colorStyleBold } from "./themes";
+import {
+  Theme,
+  colorStyle,
+  themeRootBase,
+  colorStyleBold,
+} from "./theme-utils";
+import { qw } from "./utils";
 
-const bg = "hsl(160 30% 94%)";
+const bg = "hsl(160 40% 94%)";
 // Copy/paste from Color Combos
 // https://color-combos.wavebeem.com
-const [fg, subtle, uno, due, tre] = `
-hsl(160 75% 20%)
-hsl(160 65% 30%)
-hsl(200 95% 35%)
-hsl(70 85% 25%)
+const [fg, subtle, uno, due, tre] = qw`
+hsl(160 100% 21%)
+hsl(205 50% 42%)
+hsl(205 85% 37%)
+hsl(50 80% 27%)
 hsl(310 95% 35%)
-`
-  .trim()
-  .split("\n")
-  .map((s) => s.trim())
-  .filter((s) => s);
+`;
 
 const colors = {
   fg: colorStyle(fg),
@@ -27,12 +29,14 @@ const colors = {
   keyword: colorStyleBold(uno),
 } as const;
 
-export const themeNature: Theme = {
+export const theme: Theme = {
   _root: {
     ...themeRootBase,
     "scrollbar-color": `${fg} ${bg}`,
-    "border-top": `1px solid hsl(160 30% 85%)`,
-    "border-bottom": `1px solid hsl(160 30% 85%)`,
+    "box-shadow": `
+      inset 0 1px 0 0 hsl(160 40% 75%),
+      inset 0 -1px 0 0 hsl(160 40% 75%)
+    `,
     background: bg,
     color: fg,
   },

@@ -85,7 +85,6 @@ h2 {
   font-size: 1rem;
   width: 100%;
   resize: none;
-  scrollbar-color: var(--bit-color-bg) var(--bit-color-fg);
 }
 
 .code-output {

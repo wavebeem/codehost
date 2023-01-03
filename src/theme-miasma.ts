@@ -6,28 +6,27 @@ import {
 } from "./theme-utils";
 import { qw } from "./utils";
 
-const bg = "hsl(200 20% 15%)";
+const bg = "hsl(160 35% 15%)";
 // Copy/paste from Color Combos
 // https://color-combos.wavebeem.com
-const [fg, purple, gray, orange, blue, green] = qw`
-hsl(200 10% 80%)
-hsl(270 50% 80%)
-hsl(190 20% 55%)
-hsl(30 100% 70%)
-hsl(190 75% 65%)
-hsl(100 50% 65%)
+const [fg, subtle, uno, due, tre] = qw`
+hsl(160 60% 70%)
+hsl(160 5% 62%)
+hsl(60 60% 60%)
+hsl(30 80% 75%)
+hsl(310 80% 80%)
 `;
 
 const colors = {
   fg: colorStyle(fg),
-  comment: colorStyle(purple),
-  punctuation: colorStyle(gray),
-  string: colorStyle(orange),
-  property: colorStyle(blue),
-  selector: colorStyle(green),
-  operator: colorStyle(gray),
-  function: colorStyle(blue),
-  keyword: colorStyleBold(green),
+  comment: colorStyle(subtle),
+  punctuation: colorStyle(subtle),
+  string: colorStyle(tre),
+  property: colorStyle(due),
+  selector: colorStyle(uno),
+  operator: colorStyle(subtle),
+  function: colorStyle(due),
+  keyword: colorStyleBold(uno),
 } as const;
 
 export const theme: Theme = {

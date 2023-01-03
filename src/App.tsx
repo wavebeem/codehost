@@ -27,11 +27,9 @@ import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-tsx";
 import "prismjs/components/prism-yaml";
 import "prismjs/components/prism-zig";
-import { useLayoutEffect, useRef, useState } from "react";
-import { themeBasic } from "./theme-basic";
-import { themeOcean } from "./theme-ocean";
-import { Theme } from "./themes";
-import { themeNature } from "./theme-nature";
+import { useLayoutEffect, useRef } from "react";
+import * as themes from "./themes";
+import { usePersistentState } from "./usePersistentState";
 
 const initialLang = "tsx";
 const initialCode = `\
@@ -97,13 +95,8 @@ const themeNames = {
   ocean: "Ocean",
   basic: "Basic",
   nature: "Nature",
+  miasma: "Miasma",
 } as const;
-
-const themes: { readonly [key in keyof typeof themeNames]: Theme } = {
-  ocean: themeOcean,
-  basic: themeBasic,
-  nature: themeNature,
-};
 
 function* walk(root: HTMLElement): Generator<HTMLElement> {
   yield root;
@@ -117,13 +110,15 @@ function* walk(root: HTMLElement): Generator<HTMLElement> {
   }
 }
 
+type ThemeName = keyof typeof themeNames;
+
 export function App(): JSX.Element {
   const preRef = useRef<HTMLPreElement>(null);
   const proseRef = useRef<HTMLDivElement>(null);
-  const [lang, setLang] = useState(initialLang);
-  const [code, setCode] = useState(initialCode);
-  const [theme, setTheme] = useState<keyof typeof themeNames>("ocean");
-  const [includeLink, setIncludeLink] = useState(true);
+  const [lang, setLang] = usePersistentState("language", initialLang);
+  const [code, setCode] = usePersistentState("code", initialCode);
+  const [theme, setTheme] = usePersistentState<ThemeName>("theme", "miasma");
+  const [includeLink, setIncludeLink] = usePersistentState("includeLink", true);
 
   function inlineStyles(root: HTMLElement) {
     root.classList.add("_root");
