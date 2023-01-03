@@ -206,6 +206,7 @@ export function App(): JSX.Element {
         <textarea
           id="form-code"
           className="bit-input code-input"
+          spellCheck="false"
           rows={10}
           value={code}
           onChange={(event) => {
