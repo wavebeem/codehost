@@ -263,7 +263,13 @@ export function App(): JSX.Element {
           <main>
             <h1>Your post title</h1>
             <div className="prose" ref={proseRef}>
-              <pre className="_root" ref={preRef} />
+              <pre
+                // Create from scratch every time the theme changes to avoid
+                // lingering inline styles on this element...
+                key={theme}
+                className="_root"
+                ref={preRef}
+              />
               {includeLink && (
                 <div style={{ marginTop: "-1rem", fontSize: "smaller" }}>
                   syntax highlighting by{" "}
