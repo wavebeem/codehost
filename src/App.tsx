@@ -4,6 +4,7 @@ import "prismjs/components/prism-c";
 import "prismjs/components/prism-cpp";
 import "prismjs/components/prism-csharp";
 import "prismjs/components/prism-elixir";
+import "prismjs/components/prism-erlang";
 import "prismjs/components/prism-go";
 import "prismjs/components/prism-graphql";
 import "prismjs/components/prism-haskell";
@@ -75,6 +76,7 @@ const languages = {
   php: "PHP",
   lua: "Lua",
   elixir: "Elixir",
+  erlang: "Erlang",
   shell: "Shell",
 
   c: "C",
