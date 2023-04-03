@@ -6,13 +6,14 @@ import "prismjs/components/prism-csharp";
 import "prismjs/components/prism-diff";
 import "prismjs/components/prism-elixir";
 import "prismjs/components/prism-erlang";
+import "prismjs/components/prism-fsharp";
 import "prismjs/components/prism-go";
 import "prismjs/components/prism-graphql";
 import "prismjs/components/prism-haskell";
 import "prismjs/components/prism-java";
-import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-js-extras";
 import "prismjs/components/prism-json";
+import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-kotlin";
 import "prismjs/components/prism-lua";
 import "prismjs/components/prism-markup-templating";
@@ -25,8 +26,8 @@ import "prismjs/components/prism-scala";
 import "prismjs/components/prism-sql";
 import "prismjs/components/prism-swift";
 import "prismjs/components/prism-toml";
-import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-tsx";
+import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-yaml";
 import "prismjs/components/prism-zig";
 import { useLayoutEffect, useRef } from "react";
@@ -56,7 +57,24 @@ async function sleep(delay: number): Promise<void> {
 countdown();
 `;
 
-const languages = {
+// Return an object sorted by its values so we don't have to maintain correct
+// order in the source code
+function sortObject<TObject extends object>(object: TObject): TObject {
+  const ret: Record<string, any> = {};
+  const pairs = Object.entries(object);
+  pairs.sort(([_keyA, valA], [_keyB, valB]) => {
+    console.log(valA, valB);
+    if (valA < valB) return -1;
+    if (valA > valB) return 1;
+    return 0;
+  });
+  for (const [key, val] of pairs) {
+    ret[key] = val;
+  }
+  return ret as TObject;
+}
+
+const languages = sortObject({
   html: "HTML",
   css: "CSS",
   jsx: "JavaScript",
@@ -87,20 +105,21 @@ const languages = {
   java: "Java",
   kotlin: "Kotlin",
   go: "Go",
+  fsharp: "F#",
 
   rust: "Rust",
   haskell: "Haskell",
   scala: "Scala",
   swift: "Swift",
   zig: "Zig",
-} as const;
+} as const);
 
-const themeNames = {
+const themeNames = sortObject({
   ocean: "Ocean",
   basic: "Basic",
   nature: "Nature",
   miasma: "Miasma",
-} as const;
+} as const);
 
 function* walk(root: HTMLElement): Generator<HTMLElement> {
   yield root;
