@@ -294,9 +294,20 @@ export function App(): JSX.Element {
                 ref={preRef}
               />
               {includeLink && (
-                <div style={{ marginTop: "-1rem", fontSize: "smaller" }}>
+                <div
+                  style={{
+                    marginTop: "-1.25rem",
+                    fontSize: "smaller",
+                    textAlign: "right",
+                  }}
+                >
                   syntax highlighting by{" "}
-                  <a href="https://codehost.wavebeem.com">codehost</a>
+                  <a
+                    href="https://codehost.wavebeem.com"
+                    style={{ fontWeight: "bolder" }}
+                  >
+                    codehost
+                  </a>
                 </div>
               )}
             </div>

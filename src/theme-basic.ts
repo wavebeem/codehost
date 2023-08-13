@@ -1,9 +1,4 @@
-import {
-  Theme,
-  colorStyle,
-  themeRootBase,
-  colorStyleBold,
-} from "./theme-utils";
+import { Theme, colorStyle, themeRootBase } from "./theme-utils";
 import { qw } from "./utils";
 
 const bg = "hsl(200 20% 15%)";
@@ -27,7 +22,7 @@ const colors = {
   selector: colorStyle(green),
   operator: colorStyle(gray),
   function: colorStyle(blue),
-  keyword: colorStyleBold(green),
+  keyword: colorStyle(green),
 } as const;
 
 export const theme: Theme = {
