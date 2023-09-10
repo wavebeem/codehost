@@ -6,7 +6,7 @@ const bg = "hsl(160 35% 15%)";
 // https://color-combos.wavebeem.com
 const [fg, subtle, uno, due, tre] = qw`
 hsl(160 60% 70%)
-hsl(160 5% 62%)
+hsl(160 20% 55%)
 hsl(60 60% 60%)
 hsl(30 80% 75%)
 hsl(310 80% 80%)
