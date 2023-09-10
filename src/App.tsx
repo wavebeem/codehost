@@ -1,35 +1,4 @@
-import * as prism from "prismjs";
-import "prismjs/components/prism-bash";
-import "prismjs/components/prism-c";
-import "prismjs/components/prism-cpp";
-import "prismjs/components/prism-csharp";
-import "prismjs/components/prism-diff";
-import "prismjs/components/prism-elixir";
-import "prismjs/components/prism-erlang";
-import "prismjs/components/prism-fsharp";
-import "prismjs/components/prism-go";
-import "prismjs/components/prism-graphql";
-import "prismjs/components/prism-haskell";
-import "prismjs/components/prism-java";
-import "prismjs/components/prism-js-extras";
-import "prismjs/components/prism-json";
-import "prismjs/components/prism-jsx";
-import "prismjs/components/prism-kotlin";
-import "prismjs/components/prism-lua";
-import "prismjs/components/prism-markup-templating";
-import "prismjs/components/prism-perl";
-import "prismjs/components/prism-php";
-import "prismjs/components/prism-python";
-import "prismjs/components/prism-ruby";
-import "prismjs/components/prism-rust";
-import "prismjs/components/prism-scala";
-import "prismjs/components/prism-sql";
-import "prismjs/components/prism-swift";
-import "prismjs/components/prism-toml";
-import "prismjs/components/prism-tsx";
-import "prismjs/components/prism-typescript";
-import "prismjs/components/prism-yaml";
-import "prismjs/components/prism-zig";
+import PrismComponents from "../lib/components.json";
 import { useLayoutEffect, useRef } from "react";
 import * as themes from "./themes";
 import { usePersistentState } from "./usePersistentState";
@@ -63,7 +32,6 @@ function sortObject<TObject extends object>(object: TObject): TObject {
   const ret: Record<string, any> = {};
   const pairs = Object.entries(object);
   pairs.sort(([_keyA, valA], [_keyB, valB]) => {
-    console.log(valA, valB);
     if (valA < valB) return -1;
     if (valA > valB) return 1;
     return 0;
@@ -74,45 +42,18 @@ function sortObject<TObject extends object>(object: TObject): TObject {
   return ret as TObject;
 }
 
-const languages = sortObject({
-  html: "HTML",
-  css: "CSS",
-  jsx: "JavaScript",
-  tsx: "TypeScript",
-  javascript: "JavaScript (no JSX)",
-  typescript: "TypeScript (no JSX)",
-  json: "JSON",
-  svg: "SVG",
-  xml: "XML",
-  yaml: "YAML",
-  toml: "TOML",
-  sql: "SQL",
-  graphql: "GraphQL",
+const NDASH = "\u2013";
 
-  ruby: "Ruby",
-  python: "Python",
-  perl: "Perl",
-  php: "PHP",
-  lua: "Lua",
-  diff: "Diff",
-  elixir: "Elixir",
-  erlang: "Erlang",
-  shell: "Shell",
-
-  c: "C",
-  cpp: "C++",
-  csharp: "C#",
-  java: "Java",
-  kotlin: "Kotlin",
-  go: "Go",
-  fsharp: "F#",
-
-  rust: "Rust",
-  haskell: "Haskell",
-  scala: "Scala",
-  swift: "Swift",
-  zig: "Zig",
-} as const);
+const languages = sortObject(
+  Object.fromEntries(
+    Object.entries(PrismComponents.languages).flatMap(([key, val]) => {
+      if (key === "meta" || !("title" in val)) {
+        return [];
+      }
+      return [[key, val.title]];
+    })
+  )
+);
 
 const themeNames = sortObject({
   ocean: "Ocean",
@@ -147,7 +88,7 @@ export function App(): JSX.Element {
     root.classList.add("_root");
     for (const elem of walk(root)) {
       for (const cls of elem.classList) {
-        const themeObj = themes[theme][cls] || {};
+        const themeObj = (themes[theme] || themes.miasma)[cls] || {};
         for (const [key, val] of Object.entries(themeObj)) {
           elem.style.setProperty(key, val);
         }
@@ -170,7 +111,7 @@ export function App(): JSX.Element {
     codeElement.className = `language-${lang}`;
     codeElement.textContent = code || " ";
     preRef.current.appendChild(codeElement);
-    prism.highlightAllUnder(preRef.current);
+    Prism.highlightAllUnder(preRef.current);
     inlineStyles(preRef.current);
   });
 

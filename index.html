@@ -2,8 +2,18 @@
 <html lang="en" class="bit-root bit-scrollbar">
   <head>
     <meta charset="UTF-8" />
+    <meta
+      http-equiv="content-security-policy"
+      content="
+        default-src 'self' https://plausible.io;
+        script-src 'self' https://plausible.io;
+        img-src 'self' https://plausible.io;
+        style-src 'self' 'unsafe-inline';
+      "
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>codehost | Syntax highlighter for cohost</title>
+    <script type="module" src="/lib/prism.js"></script>
     <script type="module" src="/src/main.tsx"></script>
     <script
       defer
