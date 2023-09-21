@@ -66,17 +66,16 @@ const colors = {
 
 export const theme: Theme = {
   _root: {
+    "box-sizing": "border-box",
     padding: "0.75rem",
+    margin: "1.25rem -0.75rem",
     "border-radius": "0",
     "line-height": "1.5",
     "overflow-x": "auto",
-    "font-size": "1rem",
-    margin: "1.25rem -0.75rem",
-    border: "0",
-    "scrollbar-color": `${ui.fg} ${ui.bg1}`,
     background: ui.bg0,
     color: syntax.default,
     "color-scheme": "dark",
+    "scrollbar-color": `${ui.fg} ${ui.bg1}`,
   },
 
   script: colors.fg,
