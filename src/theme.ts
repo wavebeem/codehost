@@ -4,20 +4,20 @@ export type Theme = Record<string, ThemeObj>;
 export type ThemeObj = Record<string, string>;
 
 const hue = {
-  main: 170,
-  uno: 100,
-  due: 65,
-  tre: 330,
+  main: 250,
+  uno: 85,
+  due: 180,
+  tre: 30,
 } as const;
 
 export const ui = {
-  bg0: lch(18, 14, hue.main),
-  bg1: lch(12, 14, hue.main),
+  bg0: hsl(hue.main, 40, 20),
+  bg1: hsl(hue.main, 40, 15),
 
-  fg: lch(90, 20, hue.main),
+  fg: hsl(hue.main, 85, 85),
 
-  border0: lch(30, 20, hue.main),
-  border1: lch(50, 30, hue.main),
+  border0: hsl(hue.main, 40, 35),
+  border1: hsl(hue.main, 40, 60),
 
   bracket1: lch(65, 48, hue.uno),
   bracket2: lch(65, 32, hue.due),
@@ -26,23 +26,27 @@ export const ui = {
 
 const syntax = {
   default: ui.fg,
-  alt0: lch(61, 14, hue.main),
-  alt1: lch(61, 40, hue.main),
+  alt0: hsl(hue.main, 15, 60),
+  alt1: hsl(hue.main, 85, 75),
 
-  uno0: lch(90, 30, hue.uno),
-  uno1: lch(80, 60, hue.uno),
+  uno0: hsl(hue.uno, 65, 75),
+  uno1: hsl(hue.uno, 85, 45),
 
-  due0: lch(90, 30, hue.due),
-  due1: lch(80, 50, hue.due),
-  due2: lch(70, 60, hue.due),
+  due0: hsl(hue.due, 90, 80),
+  due1: hsl(hue.due, 90, 45),
+  due2: hsl(hue.due, 90, 35),
 
-  tre0: lch(90, 30, hue.tre),
-  tre1: lch(80, 50, hue.tre),
-  tre2: lch(70, 60, hue.tre),
+  tre0: hsl(hue.tre, 100, 80),
+  tre1: hsl(hue.tre, 100, 70),
+  tre2: hsl(hue.tre, 100, 60),
 } as const;
 
 function lch(l: number, c: number, h: number): string {
   return colord({ l, c, h }).toHex();
+}
+
+function hsl(h: number, s: number, l: number): string {
+  return colord({ h, s, l }).toHex();
 }
 
 export function colorStyle<TColor extends string>(color: TColor) {
@@ -70,7 +74,6 @@ export const theme: Theme = {
     "border-radius": "0",
     "line-height": "1.5",
     "overflow-x": "auto",
-    "font-size": "1rem",
     margin: "1.25rem -0.75rem",
     border: "0",
     "scrollbar-color": `${ui.fg} ${ui.bg1}`,

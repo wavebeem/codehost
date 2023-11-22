@@ -1,5 +1,10 @@
 # Changelog
 
+## 2023-11-21
+
+- Switched to Toxic theme
+- Removed `font-size: 1rem`; let Cohost decide font size
+
 ## 2023-08-13
 
 - Removed bold font from code; increased text size
