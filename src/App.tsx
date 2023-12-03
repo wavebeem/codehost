@@ -95,7 +95,6 @@ export function App(): JSX.Element {
         // Reset styles to avoid leaking styles between themes
         elem.removeAttribute("style");
         for (const [key, val] of Object.entries(themeObj)) {
-          console.log(elem.localName, cls, key, val);
           elem.style.setProperty(key, val);
         }
       }
