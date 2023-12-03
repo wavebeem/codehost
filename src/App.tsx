@@ -89,7 +89,6 @@ export function App(): JSX.Element {
   const theme: Theme = themes[themeKey] || themes.toxic;
 
   function inlineStyles(root: HTMLElement) {
-    root.classList.add("_root");
     for (const elem of walk(root)) {
       for (const cls of elem.classList) {
         const themeObj = theme[cls] || {};
@@ -111,6 +110,7 @@ export function App(): JSX.Element {
       return;
     }
     preRef.current.innerHTML = "";
+    preRef.current.className = "_root";
     const codeElement = document.createElement("code");
     codeElement.className = `language-${lang}`;
     codeElement.textContent = code || " ";
