@@ -120,7 +120,7 @@ h2 {
 }
 
 .code-output hr {
-  margin: 0 1rem;
+  margin: 0;
   border: 0;
   border-top: 1px solid rgb(var(--color-notBlack) / 25%);
 }

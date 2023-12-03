@@ -1,5 +1,11 @@
 # Changelog
 
+## 2023-12-02
+
+- Added Miasma theme back
+- Added Classic Light theme
+- Renamed "Markup" to "HTML"
+
 ## 2023-11-21
 
 - Switched to Toxic theme
