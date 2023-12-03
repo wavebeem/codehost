@@ -100,9 +100,7 @@ export function App(): JSX.Element {
         }
       }
       // Leave the class in local development for easier theme debugging
-      if (
-        !(location.hostname === "localhost" && localStorage.debug === "true")
-      ) {
+      if (localStorage.debug !== "true") {
         elem.removeAttribute("class");
       }
     }
