@@ -54,7 +54,6 @@ const languages = sortObject(
 );
 // "HTML" is called "Markup" by default which is not very descriptive
 languages.markup = "HTML";
-console.log(languages);
 
 function* walk(root: HTMLElement): Generator<HTMLElement> {
   yield root;
@@ -89,12 +88,14 @@ export function App(): JSX.Element {
   const theme: Theme = themes[themeKey] || themes.toxic;
 
   function inlineStyles(root: HTMLElement) {
+    root.className = "_root";
     for (const elem of walk(root)) {
       for (const cls of elem.classList) {
         const themeObj = theme[cls] || {};
         // Reset styles to avoid leaking styles between themes
-        elem.setAttribute("style", "");
+        elem.removeAttribute("style");
         for (const [key, val] of Object.entries(themeObj)) {
+          console.log(elem.localName, cls, key, val);
           elem.style.setProperty(key, val);
         }
       }
@@ -109,14 +110,16 @@ export function App(): JSX.Element {
     if (!preRef.current) {
       return;
     }
-    preRef.current.innerHTML = "";
-    preRef.current.className = "_root";
+    const pre = preRef.current;
+    pre.innerHTML = "";
     const codeElement = document.createElement("code");
     codeElement.className = `language-${lang}`;
     codeElement.textContent = code || " ";
-    preRef.current.appendChild(codeElement);
-    Prism.highlightAllUnder(preRef.current);
-    inlineStyles(preRef.current);
+    pre.appendChild(codeElement);
+    Prism.highlightAllUnder(pre);
+    // Prism removes all your classes
+    pre.classList.add("_root");
+    inlineStyles(pre);
   });
 
   function loadFromFile() {
@@ -234,7 +237,7 @@ export function App(): JSX.Element {
           <main>
             <h1>Your post title</h1>
             <div className="prose" ref={proseRef}>
-              <pre className="_root" ref={preRef} />
+              <pre ref={preRef} />
               {includeLink && (
                 <div style={theme._footer}>
                   syntax highlighting by{" "}
