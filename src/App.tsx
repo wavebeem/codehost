@@ -80,7 +80,7 @@ export function App(): JSX.Element {
   const [lang, setLang] = usePersistentState("language", initialLang);
   const [code, setCode] = usePersistentState("code", initialCode);
   const [themeID, setThemeID] = usePersistentState(
-    "v2.theme",
+    "theme_id",
     themes.toxic._meta.id
   );
   const [includeLink, setIncludeLink] = usePersistentState("includeLink", true);
