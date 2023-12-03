@@ -1,57 +1,27 @@
-import { colord } from "./colord";
-
-export type Theme = Record<string, ThemeObj>;
-export type ThemeObj = Record<string, string>;
-
-const hue = {
-  main: 250,
-  uno: 85,
-  due: 180,
-  tre: 30,
-} as const;
+import { Theme, colorStyle } from "./util";
 
 export const ui = {
-  bg0: hsl(hue.main, 40, 20),
-  bg1: hsl(hue.main, 40, 15),
+  bg0: "#fff",
+  bg1: "#eee",
 
-  fg: hsl(hue.main, 85, 85),
-
-  border0: hsl(hue.main, 40, 35),
-  border1: hsl(hue.main, 40, 60),
-
-  bracket1: lch(65, 48, hue.uno),
-  bracket2: lch(65, 32, hue.due),
-  bracket3: lch(65, 31, hue.tre),
+  fg: "#000",
 } as const;
 
 const syntax = {
   default: ui.fg,
-  alt0: hsl(hue.main, 15, 60),
-  alt1: hsl(hue.main, 85, 75),
+  alt0: "#080",
+  alt1: "#000",
 
-  uno0: hsl(hue.uno, 65, 75),
-  uno1: hsl(hue.uno, 85, 45),
+  uno0: "#008",
+  uno1: "#00f",
 
-  due0: hsl(hue.due, 90, 80),
-  due1: hsl(hue.due, 90, 45),
-  due2: hsl(hue.due, 90, 35),
+  due0: "#608",
+  due1: "#a0c",
 
-  tre0: hsl(hue.tre, 100, 80),
-  tre1: hsl(hue.tre, 100, 70),
-  tre2: hsl(hue.tre, 100, 60),
+  tre0: "#950",
+  tre1: "#c00",
+  tre2: "#a60",
 } as const;
-
-function lch(l: number, c: number, h: number): string {
-  return colord({ l, c, h }).toHex();
-}
-
-function hsl(h: number, s: number, l: number): string {
-  return colord({ h, s, l }).toHex();
-}
-
-export function colorStyle<TColor extends string>(color: TColor) {
-  return { color } as const;
-}
 
 const colors = {
   fg: colorStyle(syntax.default),
@@ -69,6 +39,11 @@ const colors = {
 } as const;
 
 export const theme: Theme = {
+  _meta: {
+    name: "Classic Light",
+    id: "classic-light",
+  },
+
   _root: {
     "box-sizing": "border-box",
     padding: "0.75rem",
@@ -80,6 +55,20 @@ export const theme: Theme = {
     color: syntax.default,
     "color-scheme": "dark",
     "scrollbar-color": `${ui.fg} ${ui.bg1}`,
+    "border-top": "1px solid #ccc",
+    "border-bottom": "1px solid #ccc",
+  },
+
+  _footer: {
+    margin: "-0.75rem",
+    marginTop: "-1.25rem",
+    marginBottom: "1.25rem",
+    padding: "0.25rem 0.5rem",
+    fontSize: "smaller",
+    textAlign: "right",
+    background: ui.bg1,
+    color: ui.fg,
+    "border-bottom": "1px solid #ccc",
   },
 
   script: colors.fg,
