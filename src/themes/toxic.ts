@@ -11,7 +11,7 @@ export const ui = {
   bg0: hsl(hue.main, 40, 20),
   bg1: hsl(hue.main, 40, 15),
 
-  fg: hsl(hue.main, 85, 85),
+  fg: hsl(hue.main, 100, 90),
 
   border0: hsl(hue.main, 40, 35),
   border1: hsl(hue.main, 40, 60),

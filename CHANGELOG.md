@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023-12-05
+
+- Increased brightness of standard text in Toxic
+
 ## 2023-12-02
 
 - Added Miasma theme back
