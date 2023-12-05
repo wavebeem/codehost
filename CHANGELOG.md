@@ -4,6 +4,7 @@
 
 - Increased brightness of standard text in Toxic
 - Added CHANGELOG link
+- Fixed "HTML" being sorted incorrectly in the list
 
 ## 2023-12-02
 

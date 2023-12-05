@@ -42,18 +42,19 @@ function sortObject<TObject extends object>(object: TObject): TObject {
   return ret as TObject;
 }
 
-const languages = sortObject(
-  Object.fromEntries(
+const languages = (() => {
+  const obj = Object.fromEntries(
     Object.entries(PrismComponents.languages).flatMap(([key, val]) => {
       if (key === "meta" || !("title" in val)) {
         return [];
       }
       return [[key, val.title]];
     })
-  )
-);
-// "HTML" is called "Markup" by default which is not very descriptive
-languages.markup = "HTML";
+  );
+  // "HTML" is called "Markup" by default which is not very descriptive
+  obj.markup = "HTML";
+  return sortObject(obj);
+})();
 
 function* walk(root: HTMLElement): Generator<HTMLElement> {
   yield root;
