@@ -3,6 +3,7 @@
 ## 2023-12-05
 
 - Increased brightness of standard text in Toxic
+- Added CHANGELOG link
 
 ## 2023-12-02
 
