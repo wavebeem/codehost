@@ -52,8 +52,6 @@ export const theme: Theme = {
     color: syntax.default,
     "color-scheme": "dark",
     "scrollbar-color": `${ui.bg1} ${ui.fg}`,
-    "border-top": "1px solid #ccc",
-    "border-bottom": "1px solid #ccc",
   },
 
   _footer: {
@@ -63,9 +61,8 @@ export const theme: Theme = {
     padding: "0.25rem 0.5rem",
     fontSize: "smaller",
     textAlign: "right",
-    background: ui.bg1,
+    background: ui.bg0,
     color: ui.fg,
-    "border-bottom": "1px solid #ccc",
   },
 
   script: colors.fg,
