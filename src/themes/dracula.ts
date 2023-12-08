@@ -11,13 +11,8 @@ const syntax = {
   default: ui.fg,
   comment: "#6272A4",
   pink: "#FF79C6",
-
   green: "#50FA7B",
-  uno1: "#00f",
-
   red: "#FF5555",
-  due1: "#a0c",
-
   purple: "#BD93F9",
   yellow: "#F1FA8C",
   cyan: "#8BE9FD",
