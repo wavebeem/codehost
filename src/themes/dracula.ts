@@ -75,7 +75,7 @@ export const theme: Theme = {
   char: colors.purple,
   inserted: colors.yellow,
 
-  number: colors.number,
+  number: colors.purple,
   hexcode: colors.purple,
   regex: colors.red,
 
