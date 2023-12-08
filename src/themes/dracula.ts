@@ -16,23 +16,19 @@ const syntax = {
   purple: "#BD93F9",
   yellow: "#F1FA8C",
   cyan: "#8BE9FD",
+  orange: "#FFB86C",
 } as const;
 
 const colors = {
   fg: colorStyle(syntax.default),
   comment: colorStyle(syntax.comment),
-  punctuation: colorStyle(syntax.default),
-  string: colorStyle(syntax.yellow),
-  char: colorStyle(syntax.purple),
-  regex: colorStyle(syntax.red),
-  number: colorStyle(syntax.purple),
-  unit: colorStyle(syntax.purple),
-  property: colorStyle(syntax.purple),
-  selector: colorStyle(syntax.pink),
-  operator: colorStyle(syntax.pink),
-  function: colorStyle(syntax.green),
-  class: colorStyle(syntax.cyan),
-  keyword: colorStyle(syntax.pink),
+  pink: colorStyle(syntax.pink),
+  green: colorStyle(syntax.green),
+  red: colorStyle(syntax.red),
+  purple: colorStyle(syntax.purple),
+  yellow: colorStyle(syntax.yellow),
+  cyan: colorStyle(syntax.cyan),
+  orange: colorStyle(syntax.orange),
 } as const;
 
 export const theme: Theme = {
@@ -51,7 +47,7 @@ export const theme: Theme = {
     background: ui.bg0,
     color: syntax.default,
     "color-scheme": "dark",
-    "scrollbar-color": `${ui.bg1} ${ui.fg}`,
+    "scrollbar-color": `${ui.fg} ${ui.bg1}`,
   },
 
   _footer: {
@@ -72,39 +68,41 @@ export const theme: Theme = {
   doctype: colors.comment,
   cdata: colors.comment,
 
-  punctuation: colors.punctuation,
+  punctuation: colors.fg,
 
-  "attr-value": colors.string,
-  string: colors.string,
-  char: colors.char,
-  inserted: colors.string,
+  "attr-value": colors.yellow,
+  string: colors.yellow,
+  char: colors.purple,
+  inserted: colors.yellow,
 
   number: colors.number,
-  hexcode: colors.number,
-  regex: colors.regex,
+  hexcode: colors.purple,
+  regex: colors.red,
 
-  unit: colors.unit,
+  unit: colors.purple,
 
-  operator: colors.operator,
-  entity: colors.operator,
-  url: colors.operator,
+  operator: colors.pink,
+  url: colors.pink,
 
-  atrule: colors.function,
-  "attr-name": colors.function,
-  function: colors.function,
+  atrule: colors.pink,
+  "attr-name": colors.fg,
+  function: colors.green,
+  
+  "class-name": colors.cyan,
 
-  "class-name": colors.class,
+  tag: colors.pink,
+  selector: colors.pink,
+  keyword: colors.pink,
+  rule: colors.pink,
 
-  tag: colors.keyword,
-  selector: colors.selector,
-  keyword: colors.keyword,
-  rule: colors.keyword,
+  property: colors.purple,
+  constant: colors.purple,
 
-  property: colors.property,
-  constant: colors.property,
+  builtin: colors.cyan,
+  variable: colors.fg,
 
-  symbol: colors.function,
-  deleted: colors.property,
-  boolean: colors.property,
-  important: colors.property,
+  symbol: colors.purple,
+  deleted: colors.orange,
+  boolean: colors.purple,
+  important: colors.pink,
 };
