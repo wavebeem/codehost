@@ -1,7 +1,7 @@
 import { Theme, colorStyle } from "./util";
 
 export const ui = {
-  bg0: "#282A36",
+  bg0: "#191a21",
   bg1: "#282A36",
 
   fg: "#F8F8F2",
@@ -44,10 +44,10 @@ export const theme: Theme = {
     "border-radius": "0",
     "line-height": "1.5",
     "overflow-x": "auto",
-    background: ui.bg0,
+    background: ui.bg1,
     color: syntax.default,
     "color-scheme": "dark",
-    "scrollbar-color": `${ui.fg} ${ui.bg1}`,
+    "scrollbar-color": `${ui.fg} ${ui.bg0}`,
   },
 
   _footer: {
@@ -85,9 +85,9 @@ export const theme: Theme = {
   url: colors.pink,
 
   atrule: colors.pink,
-  "attr-name": colors.fg,
+  "attr-name": colors.green,
   function: colors.green,
-  
+
   "class-name": colors.cyan,
 
   tag: colors.pink,
@@ -99,7 +99,7 @@ export const theme: Theme = {
   constant: colors.purple,
 
   builtin: colors.cyan,
-  variable: colors.fg,
+  variable: colors.orange,
 
   symbol: colors.purple,
   deleted: colors.orange,
