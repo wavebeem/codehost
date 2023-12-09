@@ -6,6 +6,7 @@
 - Fixed a bug where methods didn't receive function colors
 - Renamed "React TSX" to "TypeScript (JSX)"
 - Renamed "React JSX" to "JavaScript (JSX)"
+- Upgraded dependencies
 
 ## 2023-12-05
 
