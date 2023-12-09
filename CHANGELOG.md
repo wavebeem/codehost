@@ -1,5 +1,12 @@
 # Changelog
 
+## 2023-12-09
+
+- Added Dracula theme (thanks @comforttiger)
+- Fixed a bug where methods didn't receive function colors
+- Renamed "React TSX" to "TypeScript (JSX)"
+- Renamed "React JSX" to "JavaScript (JSX)"
+
 ## 2023-12-05
 
 - Increased brightness of standard text in Toxic

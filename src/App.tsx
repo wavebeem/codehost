@@ -51,13 +51,14 @@ const languages = (() => {
       return [[key, val.title]];
     })
   );
-  // "HTML" is called "Markup" by default which is not very descriptive
+  // Rename some languages with confusing names
   obj.markup = "HTML";
+  obj.tsx = "TypeScript (JSX)";
+  obj.jsx = "JavaScript (JSX)";
   return sortObject(obj);
 })();
 
 function* walk(root: HTMLElement): Generator<HTMLElement> {
-  yield root;
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
   let node: Node | null = walker.currentNode;
   while (node) {
@@ -88,16 +89,22 @@ export function App(): JSX.Element {
   const themeKey = isThemeID(themeID) ? themeID : "toxic";
   const theme: Theme = themes[themeKey] || themes.toxic;
 
+  function getStyleProperties(elem: HTMLElement): [string, string][] {
+    const ret: Record<string, string> = {};
+    for (const cls of elem.classList) {
+      const themeObj = theme[cls];
+      Object.assign(ret, themeObj);
+    }
+    return Object.entries(ret);
+  }
+
   function inlineStyles(root: HTMLElement) {
     root.className = "_root";
     for (const elem of walk(root)) {
-      for (const cls of elem.classList) {
-        const themeObj = theme[cls] || {};
-        // Reset styles to avoid leaking styles between themes
-        elem.removeAttribute("style");
-        for (const [key, val] of Object.entries(themeObj)) {
-          elem.style.setProperty(key, val);
-        }
+      // Reset styles to avoid leaking styles between themes
+      elem.removeAttribute("style");
+      for (const [key, val] of getStyleProperties(elem)) {
+        elem.style.setProperty(key, val);
       }
       // Leave the class in local development for easier theme debugging
       if (localStorage.debug !== "true") {
