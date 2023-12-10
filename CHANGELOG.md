@@ -7,6 +7,7 @@
 - Renamed "React TSX" to "TypeScript (JSX)"
 - Renamed "React JSX" to "JavaScript (JSX)"
 - Upgraded dependencies
+- Switched to auto-loading each language to speed up initial page load
 
 ## 2023-12-05
 

@@ -1,4 +1,4 @@
-import PrismComponents from "../lib/components.json";
+import PrismComponents from "../prism/components.json";
 import { useLayoutEffect, useRef } from "react";
 import { usePersistentState } from "./usePersistentState";
 import { Theme, themes } from "./themes";
@@ -123,10 +123,13 @@ export function App(): JSX.Element {
     codeElement.className = `language-${lang}`;
     codeElement.textContent = code || " ";
     pre.appendChild(codeElement);
-    Prism.highlightAllUnder(pre);
-    // Prism removes all your classes
-    pre.classList.add("_root");
-    inlineStyles(pre);
+    Prism.plugins.autoloader.loadLanguages([lang], () => {
+      Prism.highlightAllUnder(pre, false, () => {
+        // Prism removes all your classes
+        pre.classList.add("_root");
+        inlineStyles(pre);
+      });
+    });
   });
 
   function loadFromFile() {
