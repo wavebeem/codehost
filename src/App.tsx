@@ -1,4 +1,5 @@
-import PrismComponents from "../public/prism/components.json";
+// Copied from /public/prism/components.json
+import PrismComponents from "./prism-components.json";
 import { useLayoutEffect, useRef } from "react";
 import { usePersistentState } from "./usePersistentState";
 import { Theme, themes } from "./themes";
