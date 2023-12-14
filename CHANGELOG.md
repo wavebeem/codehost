@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023-12-13
+
+- Updated 2bit-ui
+
 ## 2023-12-09
 
 - Added Dracula theme (thanks @comforttiger)
