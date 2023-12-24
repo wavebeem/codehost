@@ -3,6 +3,7 @@ import PrismComponents from "./prism-components.json";
 import { useLayoutEffect, useRef } from "react";
 import { usePersistentState } from "./usePersistentState";
 import { Theme, themes } from "./themes";
+import { theme as baseTheme } from "./themes/base";
 
 const initialLang = "tsx";
 const initialCode = `\
@@ -79,6 +80,7 @@ function isThemeID(x: unknown): x is ThemeName {
 export function App(): JSX.Element {
   const preRef = useRef<HTMLPreElement>(null);
   const proseRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
   const [lang, setLang] = usePersistentState("language", initialLang);
   const [code, setCode] = usePersistentState("code", initialCode);
   const [themeID, setThemeID] = usePersistentState(
@@ -92,15 +94,15 @@ export function App(): JSX.Element {
 
   function getStyleProperties(elem: HTMLElement): [string, string][] {
     const ret: Record<string, string> = {};
-    for (const cls of elem.classList) {
-      const themeObj = theme[cls];
-      Object.assign(ret, themeObj);
+    const classes = [...elem.classList].sort();
+    for (const cls of classes) {
+      console.log("STYLE", cls);
+      Object.assign(ret, baseTheme[cls], theme[cls]);
     }
     return Object.entries(ret);
   }
 
   function inlineStyles(root: HTMLElement) {
-    root.className = "_root";
     for (const elem of walk(root)) {
       // Reset styles to avoid leaking styles between themes
       elem.removeAttribute("style");
@@ -128,7 +130,18 @@ export function App(): JSX.Element {
       Prism.highlightAllUnder(pre, false, () => {
         // Prism removes all your classes
         pre.classList.add("_root");
+        if (!includeLink) {
+          pre.classList.add("_root::last");
+        }
+        pre.className = "_root";
+        if (!includeLink) {
+          pre.classList.add("_root::last");
+        }
         inlineStyles(pre);
+        if (footerRef.current) {
+          footerRef.current.className = "_footer";
+          inlineStyles(footerRef.current);
+        }
       });
     });
   });
@@ -250,7 +263,7 @@ export function App(): JSX.Element {
             <div className="prose" ref={proseRef}>
               <pre ref={preRef} />
               {includeLink && (
-                <div style={theme._footer}>
+                <div ref={footerRef}>
                   syntax highlighting by{" "}
                   <a
                     href="https://codehost.wavebeem.com"

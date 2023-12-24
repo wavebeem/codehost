@@ -1,5 +1,10 @@
 # Changelog
 
+## 2023-12-24
+
+- Removed negative margins from code blocks
+  - It seems that cohost uses `overflow: hidden` now, cutting off content
+
 ## 2023-12-13
 
 - Updated 2bit-ui

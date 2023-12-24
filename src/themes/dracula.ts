@@ -38,12 +38,6 @@ export const theme: Theme = {
   },
 
   _root: {
-    "box-sizing": "border-box",
-    padding: "0.75rem",
-    margin: "1.25rem -0.75rem",
-    "border-radius": "0",
-    "line-height": "1.5",
-    "overflow-x": "auto",
     background: ui.bg1,
     color: syntax.default,
     "color-scheme": "dark",
@@ -51,12 +45,6 @@ export const theme: Theme = {
   },
 
   _footer: {
-    margin: "-0.75rem",
-    marginTop: "-1.25rem",
-    marginBottom: "1.25rem",
-    padding: "0.25rem 0.5rem",
-    fontSize: "smaller",
-    textAlign: "right",
     background: ui.bg0,
     color: ui.fg,
   },

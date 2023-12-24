@@ -9,6 +9,7 @@
   --color-strawberry: 229 107 111;
   --color-mango: 255 171 92;
   --color-longan: 255 216 168;
+  color-scheme: dark light;
 }
 
 .bit-auto,
@@ -40,7 +41,7 @@ body {
 }
 
 pre {
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 main {
