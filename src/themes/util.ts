@@ -1,4 +1,4 @@
-import { colord } from "../colord";
+declare const chroma: any;
 
 export interface Theme {
   _meta: {
@@ -11,11 +11,11 @@ export interface Theme {
 }
 
 export function lch(l: number, c: number, h: number): string {
-  return colord({ l, c, h }).toHex();
+  return chroma.lch(l, c, h).hex();
 }
 
 export function hsl(h: number, s: number, l: number): string {
-  return colord({ h, s, l }).toHex();
+  return chroma.hsl(h, s / 100, l / 100).hex();
 }
 
 export function colorStyle<TColor extends string>(color: TColor) {

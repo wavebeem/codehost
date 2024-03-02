@@ -12,28 +12,27 @@
   color-scheme: dark light;
 }
 
-.bit-auto,
-.bit-root {
-  --bit-color-bg: hsl(22 100% 95%);
-  --bit-color-fg: hsl(22 100% 30%);
-  --bit-color-shadow: hsl(22 80% 80%);
-  --bit-color-accent: hsl(202 100% 30%);
-}
-
 @media (prefers-color-scheme: dark) {
-  .bit-auto,
-  .bit-root {
-    --bit-color-bg: #333333;
-    --bit-color-fg: #cccccc;
-    --bit-color-shadow: #666666;
-    --bit-color-accent: #00ffcc;
+  .candy-root {
+    --candy-color-background1: hsl(160 50% 10%);
+    --candy-color-background2: hsl(160 50% 20%);
+    --candy-color-background3: hsl(160 50% 17%);
+    --candy-color-background4: hsl(160 50% 14%);
+    --candy-color-text1: hsl(160 50% 90%);
+    --candy-color-text2: hsl(160 50% 70%);
+    --candy-color-border1: hsl(160 50% 45%);
+    --candy-color-border2: hsl(160 50% 26%);
+    --candy-color-border3: hsl(160 50% 22%);
+    --candy-color-accent-background1: hsl(85 80% 50%);
+    --candy-color-accent-background2: hsl(85 80% 45%);
+    --candy-color-accent-border1: hsl(85 80% 80%);
+    --candy-color-accent-text1: hsl(85 80% 5%);
+    --candy-color-shadow1: hsl(160 50% 5% / 50%);
   }
 }
 
 body {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: system-ui, sans-serif;
   line-height: 1.5;
   padding: 1rem;
   max-width: 800px;
@@ -106,48 +105,66 @@ h2 {
   resize: none;
 }
 
-.code-output {
-  box-shadow: 0 0 0 1px rgb(20 20 20 / 10%), 0 2px 4px rgb(20 20 20 / 20%);
-  border-radius: 4px;
-  color: rgb(var(--color-notBlack));
-  background: rgb(var(--color-notWhite));
+.chost {
+  --chost-color-background-header: rgb(var(--color-notWhite));
+  --chost-color-background-body: white;
+  --chost-color-border: rgb(var(--color-notBlack) / 25%);
+  --chost-color-text: rgb(var(--color-notBlack));
+  --chost-color-tag: rgb(var(--color-notBlack) / 50%);
+  --chost-shadow: 0 0 0 1px rgb(20 20 20 / 10%), 0 2px 4px rgb(20 20 20 / 20%);
+
   font-size: 1rem;
+  border-radius: 4px;
+  box-shadow: var(--chost-shadow);
+  color: var(--chost-color-text);
+  background: var(--chost-color-background-header);
 }
 
-.code-output main {
-  background: white;
+.chost main {
+  background: var(--chost-color-background-body);
   padding: 12px;
   margin: 0;
 }
 
-.code-output hr {
+.chost hr {
   margin: 0;
   border: 0;
-  border-top: 1px solid rgb(var(--color-notBlack) / 25%);
+  border-top: 1px solid var(--chost-color-border);
 }
 
-.code-output aside {
-  color: rgb(var(--color-notBlack) / 50%);
+.chost aside {
+  color: var(--chost-color-tag);
 }
 
-.code-output .prose {
+.chost .prose {
   margin: 1rem 0;
 }
 
-.code-output h1 {
+.chost h1 {
   margin: 0;
 }
 
-.code-output footer,
-.code-output header {
+.chost footer,
+.chost header {
   padding: 1rem;
 }
 
-.code-output pre {
+.chost pre {
   margin: 0;
   margin-bottom: 1.5rem;
 }
 
 .prose a {
   color: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+  .chost {
+    --chost-color-background-header: hsl(0 0% 10%);
+    --chost-color-background-body: hsl(0 0% 0%);
+    --chost-color-border: hsl(0 0% 100% / 20%);
+    --chost-color-text: hsl(0 0% 95%);
+    --chost-color-tag: hsl(0 0 75%);
+    --chost-shadow: 0 0 0 1px hsl(0 0% 100% / 20%), 0 2px 4px rgb(0 0 0 / 80%);
+  }
 }

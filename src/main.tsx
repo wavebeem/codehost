@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "2bit-ui";
+import "@wavebeem/candy-css";
 import "./index.css";
 import { App } from "./App";
 

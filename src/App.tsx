@@ -96,7 +96,6 @@ export function App(): JSX.Element {
     const ret: Record<string, string> = {};
     const classes = [...elem.classList].sort();
     for (const cls of classes) {
-      console.log("STYLE", cls);
       Object.assign(ret, baseTheme[cls], theme[cls]);
     }
     return Object.entries(ret);
@@ -172,12 +171,12 @@ export function App(): JSX.Element {
     <main className="flex flex-column gap3">
       <div className="flex flex-wrap items-end gap3">
         <div className="flex flex-column gap1">
-          <label className="bit-label" htmlFor="form-lang">
+          <label className="candy-label" htmlFor="form-lang">
             Language
           </label>
           <select
             id="form-lang"
-            className="bit-select"
+            className="candy-select"
             value={lang}
             onChange={(event) => {
               setLang(event.target.value);
@@ -192,17 +191,17 @@ export function App(): JSX.Element {
             })}
           </select>
         </div>
-        <button className="bit-button" type="button" onClick={loadFromFile}>
+        <button className="candy-button" type="button" onClick={loadFromFile}>
           Load text from file&hellip;
         </button>
       </div>
       <div className="flex flex flex-column gap1">
-        <label className="bit-label" htmlFor="form-code">
+        <label className="candy-label" htmlFor="form-code">
           Paste text here
         </label>
         <textarea
           id="form-code"
-          className="bit-input code-input"
+          className="candy-input code-input"
           spellCheck="false"
           rows={10}
           value={code}
@@ -213,12 +212,12 @@ export function App(): JSX.Element {
       </div>
       <div className="flex flex-wrap gap3 items-end">
         <div className="flex flex-column gap1">
-          <label className="bit-label" htmlFor="form-theme">
+          <label className="candy-label" htmlFor="form-theme">
             Theme
           </label>
           <select
             id="form-theme"
-            className="bit-select"
+            className="candy-select"
             value={themeID}
             onChange={(event) => {
               setThemeID(event.target.value);
@@ -235,9 +234,9 @@ export function App(): JSX.Element {
         </div>
         <div className="flex-auto" />
         <div className="flex flex-wrap gap3 items-center">
-          <label className="bit-field flex flex-wrap gap1 items-center">
+          <label className="candy-choice">
             <input
-              className="bit-checkbox"
+              className="candy-checkbox"
               type="checkbox"
               checked={includeLink}
               onChange={(event) => {
@@ -246,13 +245,13 @@ export function App(): JSX.Element {
             />
             <div>Include link to codehost</div>
           </label>
-          <button className="bit-button" type="button" onClick={copyAsHTML}>
+          <button className="candy-button" type="button" onClick={copyAsHTML}>
             Copy as HTML
           </button>
         </div>
       </div>
 
-      <output className="code-output">
+      <output className="chost">
         <article>
           <header>
             <b>Preview</b> @cohost
