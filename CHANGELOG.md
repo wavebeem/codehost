@@ -1,5 +1,9 @@
 # Changelog
 
+## 2024-03-01
+
+- Switched from 2bit UI to candy.css
+
 ## 2023-12-24
 
 - Removed negative margins from code blocks
