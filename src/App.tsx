@@ -1,5 +1,5 @@
 // Copied from /public/prism/components.json
-import PrismComponents from "./prism-components.json";
+import { prismComponents } from "./prism-components.js";
 import { useLayoutEffect, useRef } from "react";
 import { usePersistentState } from "./usePersistentState";
 import { Theme, themes } from "./themes";
@@ -46,7 +46,7 @@ function sortObject<TObject extends object>(object: TObject): TObject {
 
 const languages = (() => {
   const obj = Object.fromEntries(
-    Object.entries(PrismComponents.languages).flatMap(([key, val]) => {
+    Object.entries(prismComponents.languages).flatMap(([key, val]) => {
       if (key === "meta" || !("title" in val)) {
         return [];
       }
