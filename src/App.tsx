@@ -85,7 +85,7 @@ export function App(): JSX.Element {
   const [code, setCode] = usePersistentState("code", initialCode);
   const [themeID, setThemeID] = usePersistentState(
     "theme_id",
-    themes.toxic._meta.id
+    themes.miasma._meta.id
   );
   const [includeLink, setIncludeLink] = usePersistentState("includeLink", true);
 

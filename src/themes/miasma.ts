@@ -1,41 +1,49 @@
-import { lch, colorStyle, Theme } from "./util";
+import { hsl, colorStyle, Theme } from "./util";
 
 const hue = {
-  main: 170,
-  uno: 100,
-  due: 65,
-  tre: 330,
+  bg: 160,
+  uno: 85,
+  due: 20,
+  tre: 320,
 } as const;
 
-export const ui = {
-  bg0: lch(18, 14, hue.main),
-  bg1: lch(12, 14, hue.main),
+const ui = {
+  bg0: hsl(hue.bg, 50, 14),
+  bg1: hsl(hue.bg, 50, 17),
 
-  fg: lch(90, 20, hue.main),
+  fg: hsl(hue.bg, 70, 80),
 
-  border0: lch(30, 20, hue.main),
-  border1: lch(50, 30, hue.main),
+  border0: hsl(hue.bg, 50, 25),
+  border1: hsl(hue.bg, 50, 45),
 
-  bracket1: lch(65, 48, hue.uno),
-  bracket2: lch(65, 32, hue.due),
-  bracket3: lch(65, 31, hue.tre),
+  link: hsl(hue.uno, 90, 50),
+
+  accent0: hsl(hue.tre, 90, 80),
+  accent1: hsl(hue.due, 90, 80),
+
+  bracket1: hsl(hue.uno, 40, 50),
+  bracket2: hsl(hue.due, 40, 60),
+  bracket3: hsl(hue.tre, 30, 65),
+
+  error: hsl(350, 80, 75),
 } as const;
 
 const syntax = {
-  default: ui.fg,
-  alt0: lch(61, 14, hue.main),
-  alt1: lch(61, 40, hue.main),
+  default: hsl(hue.bg, 60, 90),
 
-  uno0: lch(90, 30, hue.uno),
-  uno1: lch(80, 60, hue.uno),
+  alt0: hsl(hue.bg, 15, 60),
+  alt1: hsl(hue.bg, 40, 48),
 
-  due0: lch(90, 30, hue.due),
-  due1: lch(80, 50, hue.due),
-  due2: lch(70, 60, hue.due),
+  uno0: hsl(hue.uno, 80, 80),
+  uno1: hsl(hue.uno, 70, 60),
 
-  tre0: lch(90, 30, hue.tre),
-  tre1: lch(80, 50, hue.tre),
-  tre2: lch(70, 60, hue.tre),
+  due0: hsl(hue.due, 100, 90),
+  due1: hsl(hue.due, 90, 75),
+  due2: hsl(hue.due, 90, 60),
+
+  tre0: hsl(hue.tre, 100, 90),
+  tre1: hsl(hue.tre, 85, 80),
+  tre2: hsl(hue.tre, 90, 70),
 } as const;
 
 const colors = {
