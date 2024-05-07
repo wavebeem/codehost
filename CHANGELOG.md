@@ -1,5 +1,9 @@
 # Changelog
 
+## 2024-05-07
+
+- Added theme "GitHub Dark Default" ([@SpiritAxolotl](https://github.com/SpiritAxolotl))
+
 ## 2024-03-01
 
 - Switched from 2bit UI to candy.css
@@ -15,7 +19,7 @@
 
 ## 2023-12-09
 
-- Added Dracula theme (thanks @comforttiger)
+- Added Dracula theme ([@comforttiger](https://github.com/comforttiger))
 - Fixed a bug where methods didn't receive function colors
 - Renamed "React TSX" to "TypeScript (JSX)"
 - Renamed "React JSX" to "JavaScript (JSX)"
