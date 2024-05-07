@@ -4,8 +4,7 @@ Code formatter for cohost
 
 ## Setup
 
-```
-$ npm install
-
-$ npm start
+```bash
+npm install
+npm start
 ```
