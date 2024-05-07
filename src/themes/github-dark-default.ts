@@ -2,7 +2,7 @@ import { Theme, colorStyle } from "./util";
 
 export const ui = {
   bg0: "#0D1117",
-  bg1: "#0D1117",
+  bg1: "#161B22",
 
   fg: "#E6EDF3",
 } as const;
